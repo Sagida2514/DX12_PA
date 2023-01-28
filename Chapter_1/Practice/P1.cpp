@@ -5,6 +5,12 @@
 using namespace std;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
+const float Epsilon = 0.001f;
+bool Equals(float lhs, float rhs)
+{
+	// lhs와 rhs 사이의 거리가 Epsilon보다 작은가?
+	return fabs(lhs - rhs) < Epsilon ? true : false;
+}
 int main()
 {
 	cout.precision(8);
@@ -25,4 +31,12 @@ int main()
 
 	float powLU = powf(LU, 1.0e6f);
 	cout << "LU^(10^) = " << powLU << endl;
+
+
+	// EPS로 비교
+
+	if (Equals(LU, 1.0f) == true)
+		cout << "길이 1" << endl;
+	else
+		cout << "길이 1 아님" << endl;
 }
