@@ -1,0 +1,28 @@
+#include <windows.h>
+#include <DirectXMath.h>
+#include <DirectXPackedVector.h>
+#include <iostream>
+using namespace std;
+using namespace DirectX;
+using namespace DirectX::PackedVector;
+int main()
+{
+	cout.precision(8);
+
+	XMVECTOR u = XMVectorSet(1.0f, 1.0f, 1.0f, 0.0f);
+	XMVECTOR n = XMVector3Normalize(u);
+
+	float LU = XMVectorGetX(XMVector3Length(n));
+
+	// n은 u가 정규화된 벡터이므로 수학적으로는 길이가 반드시 1이어야 한다. 수치적으로도 그럴까?
+	cout << LU << endl;
+	if (LU == 1.0f)
+		cout << "길이 1" << endl;
+	else
+		cout << "길이 1 아님" << endl;
+
+	// 1을 임의의 지수로 거듭제곱해도 여전히 1이어야 한다. 실제로 그럴까?
+
+	float powLU = powf(LU, 1.0e6f);
+	cout << "LU^(10^) = " << powLU << endl;
+}
